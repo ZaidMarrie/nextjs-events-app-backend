@@ -8,7 +8,7 @@ module.exports = {
       data.slug = slugify(data.name, { lower: true });
     }
   },
-  beforeUpdate: async (params, event) => {
+  beforeUpdate: async (event) => {
     const { data } = event.params;
 
     if (data.name) {
