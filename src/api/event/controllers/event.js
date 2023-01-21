@@ -54,7 +54,7 @@ module.exports = createCoreController("api::event.event", ({ strapi }) => ({
     });
 
     if (event) {
-      const response = await super.update(ctx);
+      const response = await super.delete(ctx);
       return response;
     } else {
       return ctx.unauthorized();
