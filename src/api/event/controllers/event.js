@@ -75,6 +75,20 @@ module.exports = createCoreController("api::event.event", ({ strapi }) => ({
     return { data, meta };
   },
 
+  // Find One with populate
+  async findOne(ctx) {
+    const populateList = ["user", "image"];
+
+    // Push any additional query params to the array
+    populateList.push(ctx.query.populate);
+
+    const { query } = ctx;
+    ctx.query = { ...query, populate: populateList.join(",") };
+
+    const response = await super.findOne(ctx);
+    return response;
+  },
+
   // Get logged in user
   async me(ctx) {
     const user = ctx.state.user;
